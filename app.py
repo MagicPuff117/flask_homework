@@ -49,9 +49,10 @@ class AdView(MethodView):
             'date': new_ad.date
         })
 
-    def delete(self):
+    def delete(self, ad_id):
 
-        db.session.remove()
+        remove_add = AdModel.query.filter_by(ad_id)
+        db.session.remove(remove_add)
         db.commit
 
 
@@ -59,5 +60,6 @@ class AdView(MethodView):
 
 app.add_url_rule('/new_user', view_func=AdView.as_view('create_user'), methods=['POST'])
 app.add_url_rule('/get_ad/<int:ad_id>', view_func=AdView.as_view('get_ad'), methods=['GET'])
+app.add_url_rule('/delete_ad/<int:ad_id>', view_func=AdView.as_view('del_ad'),methods=['DELETE'])
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

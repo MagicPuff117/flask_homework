@@ -15,5 +15,9 @@ resp1 = requests.post(f'{HOST}/new_user', json={
 resp2 = requests.get(f'{HOST}/get_ad/2')
 
 
-print(resp2.status_code)
-print(resp2.text)
+
+resp3 = requests.delete(f'{HOST}/delete_ad/1')
+
+
+print(resp3.status_code)
+print(resp3.text)
